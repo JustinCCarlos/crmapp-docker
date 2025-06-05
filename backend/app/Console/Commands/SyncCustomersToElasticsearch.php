@@ -81,7 +81,7 @@ class SyncCustomersToElasticsearch extends Command
                 // Index each customer
                 $client->index([
                     'index' => $indexName,
-                    'id' => $customer->id,
+                    'id' => $customer->customer_id,
                     'body' => $customer->toArray()
                 ]);
                 

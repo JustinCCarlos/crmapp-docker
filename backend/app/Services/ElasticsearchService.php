@@ -64,16 +64,41 @@ class ElasticsearchService
         return $this->client->indices()->create($params);
     }
 
+    public function getDocument($index, $id)
+    {
+      try {
+        $params = [
+          'index' => $index,
+          'id' => $id
+        ];
+        return $this->client->get($params);
+      } catch (\Exception $e) {
+        Log::error("Error getting document: " . $e->getMessage());
+        return null;
+      }
+    }
+
     public function indexDocument($index, $id, $document)
     {
-        $params = [
-            'index' => $index,
-            'id' => $id,
-            'body' => $document
-        ];
+      $params = [
+        'index' => $index,
+        'id' => $id,
+        'body' => $document,
+        'refresh' => 'wait_for'
+      ];
 
         return $this->client->index($params);
     }
+
+    public function deleteDocument($index, $id){
+      $params = [
+        'index' => $index,
+        'id' => $id
+      ];
+      
+      return $this->client->delete($params);
+    }
+  
 
     public function deleteIndex($index)
     {

@@ -14,7 +14,7 @@ class Customer
   {
     $this->elasticsearch->index([
       'index' => 'customers',
-      'id'    => $customer->id,
+      'id'    => $customer->customer_id,
       'body'  => $customer->toArray(),
     ]);
   }
@@ -23,7 +23,7 @@ class Customer
   {
     $this->elasticsearch->index([
       'index' => 'customers',
-      'id'    => $customer->id,
+      'id'    => $customer->customer_id,
       'body'  => $customer->toArray(),
     ]);
   }
@@ -32,7 +32,7 @@ class Customer
   {
     $this->elasticsearch->delete([
       'index' => 'customers',
-      'id'    => $customer->id,
+      'id'    => $customer->customer_id,
     ]);
   }
 
