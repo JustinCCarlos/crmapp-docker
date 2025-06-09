@@ -6,7 +6,7 @@ use App\Models\Customer;
 use App\Services\ElasticsearchService;
 use Illuminate\Console\Command;
 
-class SyncCustomersToElasticsearch extends Command
+class SyncCustomerToElasticsearch extends Command
 {
     protected $signature = 'customers:sync-elasticsearch';
     protected $description = 'Sync customers from MySQL to Elasticsearch';

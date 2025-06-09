@@ -1,0 +1,10 @@
+services:
+  api:
+    volumes:
+      - ./backend:/var/www/backend:cached
+      - laravel_storage:/var/www/backend/storage
+      - laravel_cache:/var/www/backend/bootstrap/cache
+
+volumes:
+  laravel_storage: {}
+  laravel_cache: {}
