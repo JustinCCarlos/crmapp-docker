@@ -28,10 +28,11 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts -vvv
 
 # Create storage directories and set permissions for laravel
 RUN mkdir -p /var/www/backend/bootstrap/cache \
-             /var/www/backend/storage/framework/cache \
-             /var/www/backend/storage/framework/sessions \
-             /var/www/backend/storage/framework/views \
-             /var/www/backend/storage/logs \
+            /var/www/backend/storage/framework/cache \
+            /var/www/backend/storage/framework/sessions \
+            /var/www/backend/storage/framework/views \
+            /var/www/backend/storage/logs \
+    && chown -R www-data:www-data /var/www/backend/storage \
     && chown -R www-data:www-data /var/www/backend \
     && chmod -R 755 /var/www/backend \
     && chmod -R 775 /var/www/backend/storage \
