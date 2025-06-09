@@ -1,4 +1,4 @@
-name: crmapp-v2
+name: crmapp-v2.0.1
 
 services:
   api:
