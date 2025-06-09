@@ -3,23 +3,11 @@
 .env.local
 .env.*.local
 backend/.env
+laravel.env
 
 # Docker volumes and data
 db-data/
 elasticsearch_data/
-
-# Laravel specific
-backend/vendor/
-backend/node_modules/
-backend/public/hot
-backend/public/storage
-backend/storage/*.key
-backend/storage/logs/
-backend/storage/framework/cache/data/
-backend/storage/framework/sessions/
-backend/storage/framework/testing/
-backend/storage/framework/views/
-backend/bootstrap/cache/
 
 # IDE files
 .vscode/
