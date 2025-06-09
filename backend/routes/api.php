@@ -7,7 +7,7 @@ Route::get('/customers', [CustomerController::class, 'getAllCustomers']);
 
 Route::get('/customers/search', [CustomerController::class, 'searchCustomer']);
 
-Route::get('customers/{id}', [CustomerController::class, 'showCustomer']);
+Route::get('/customers/{id}', [CustomerController::class, 'showCustomer']);
 
 Route::post('/customers', [CustomerController::class, 'createCustomer']);
 
