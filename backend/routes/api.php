@@ -5,7 +5,7 @@ use App\Services\ElasticsearchService;
 
 Route::get('/customers', [CustomerController::class, 'getAllCustomers']);
 
-Route::get('/customers/search', [CustomerController::class, 'searchCustomer']);
+//Route::get('/customers/search', [CustomerController::class, 'searchCustomer']);
 
 Route::get('/customers/{id}', [CustomerController::class, 'showCustomer']);
 

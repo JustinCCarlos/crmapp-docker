@@ -16,25 +16,56 @@ class CustomerService
     $this->elasticsearchService = $elasticsearchService;
   }
 
-    public function getAllCustomers()
+    public function searchCustomers(string $name = null, string $email = null)
     {
-        return Customer::all();
-    }
-
-    public function searchCustomers(string $term)
-    {
+        $must = [];
+    
+        // If name is provided, search in first_name and last_name
+        if ($name) {
+            $must[] = [
+                'multi_match' => [
+                    'query' => $name,
+                    'fields' => ['first_name', 'last_name'],
+                    'operator' => 'and',
+                    'fuzziness' => 'AUTO'
+                ]
+            ];
+        }
+        
+        // If email is provided, search in email field
+        if ($email) {
+            $must[] = [
+                'wildcard' => [
+                    'email' => "*{$email}*"
+                ]
+            ];
+        }
+        
         $query = [
-            'multi_match' => [
-            'query' => $term,
-            'fields' => ['first_name', 'last_name', 'email', 'contact_number']
+            'bool' => [
+                'must' => $must
             ]
         ];
-
+        
         $response = $this->elasticsearchService->search('customers', $query);
         $hits = $response['hits']['hits'] ?? [];
-
         return array_map(fn($hit) => $hit['_source'], $hits);
     }
+
+    // public function searchCustomers(string $term)
+    // {
+    //     $query = [
+    //         'multi_match' => [
+    //         'query' => $term,
+    //         'fields' => ['first_name', 'last_name', 'email', 'contact_number']
+    //         ]
+    //     ];
+
+    //     $response = $this->elasticsearchService->search('customers', $query);
+    //     $hits = $response['hits']['hits'] ?? [];
+
+    //     return array_map(fn($hit) => $hit['_source'], $hits);
+    // }
 
     public function getCustomer(int $id)
     {
