@@ -1,11 +1,8 @@
-name: crmapp-v2.0.1
+name: crmapp-v2.0.2
 
 services:
   api:
     build: ./backend
-    volumes:
-      - laravel_storage:/var/www/backend/storage
-      - laravel_cache:/var/www/backend/bootstrap/cache
     restart: always
     env_file:
       - laravel.env
@@ -69,8 +66,6 @@ services:
 
 volumes:
   db-data: {}
-  laravel_storage: {}
-  laravel_cache: {}
   elasticsearch_data: {}
 
 networks:
