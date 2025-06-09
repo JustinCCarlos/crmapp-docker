@@ -16,6 +16,11 @@ class CustomerService
     $this->elasticsearchService = $elasticsearchService;
   }
 
+    public function getAllCustomers()
+    {
+        return Customer::all();
+    }
+
     public function searchCustomers(string $name = null, string $email = null)
     {
         $must = [];
